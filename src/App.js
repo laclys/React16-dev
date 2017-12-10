@@ -1,22 +1,24 @@
 import React from 'react'
+import {connect} from 'react-redux'
+import {addCount, minuxCount, addCountAsync}  from './index.redux'
 
 class App extends React.Component {
   render() {
-    const store = this.props.store
-    const num = store.getState()
-    const addCount = this.props.addCount
-    const minuxCount = this.props.minuxCount
-    const addCountAsync = this.props.addCountAsync
-
     return (
       <div>
-        <h1>Show:{num}</h1>
-        <button onClick={() => store.dispatch(addCount())} >ADD 1</button>
-        <button onClick={() => store.dispatch(minuxCount())} >MINUS 1</button>
-        <button onClick={() => store.dispatch(addCountAsync())} >ASYNC ADD 1</button>
+        <h1>Show:{this.props.num}</h1>
+        <button onClick={this.props.addCount} >ADD 1</button>
+        <button onClick={this.props.minuxCount} >MINUS 1</button>
+        <button onClick={this.props.addCountAsync} >ASYNC ADD 1</button>
       </div>
     )
   }
 }
+const mapStateToProps = (state) => {
+  return {num: state}
+}
 
+const actionCreators = {addCount, minuxCount, addCountAsync}
+
+App = connect(mapStateToProps, actionCreators)(App)
 export default App
