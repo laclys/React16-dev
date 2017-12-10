@@ -4,14 +4,14 @@ const MINUX = 'minus'
 
 
 // reducer
-export function counter(state=0, action) {
+export function counter(state=10, action) {
   switch (action.type) {
     case ADD:
       return state + 1
     case MINUX:
       return state - 1
     default:
-      return 10
+      return state
   }
 }
 
