@@ -22,3 +22,14 @@ export function addCount() {
 export function minuxCount() {
   return {type: MINUX}
 }
+
+// 延迟添加
+export function  addCountAsync() {
+  // thunk插件的作用，这里可以返回函数
+  return dispatch => {
+    setTimeout(() => {
+      // 异步结束后，手动执行dispatch
+      dispatch(addCount())
+    }, 2000)
+  }
+}
