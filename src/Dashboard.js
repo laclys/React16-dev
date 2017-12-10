@@ -1,5 +1,5 @@
 import React from 'react'
-import {Route, Link, Redirect, Switch} from 'react-router-dom'
+import {Route, Link, Redirect} from 'react-router-dom'
 import App  from './App'
 import {connect} from 'react-redux'
 import {logout} from './Auth.redux'
@@ -16,12 +16,8 @@ function AppC(params) {
   {logout}
 )
 class Dashboard extends React.Component{
-  constructor(props) {
-    super(props)
-
-  }
   render () {
-    console.log(this.props)
+    // console.log(this.props)
     const redirectToLogin = <Redirect to='/login'></Redirect>
     const app = (
       <div>

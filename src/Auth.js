@@ -8,9 +8,6 @@ import {Redirect} from 'react-router-dom'
   {login}
 )
 class Auth extends React.Component{
-  constructor(props) {
-    super(props)
-  }
   render () {
     return (
       <div>
