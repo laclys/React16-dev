@@ -4,7 +4,7 @@ import {addCount, minuxCount, addCountAsync}  from './index.redux'
 
 @connect(
   // 你要state什么属性放到props
-  (state) => {num: state},
+  state => ({num: state}),
   // 你要什么方法放到props里，自动dispatch
   {addCount, minuxCount, addCountAsync}
 )
