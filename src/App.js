@@ -2,6 +2,12 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {addCount, minuxCount, addCountAsync}  from './index.redux'
 
+@connect(
+  // 你要state什么属性放到props
+  (state) => {num: state},
+  // 你要什么方法放到props里，自动dispatch
+  {addCount, minuxCount, addCountAsync}
+)
 class App extends React.Component {
   render() {
     return (
@@ -14,11 +20,5 @@ class App extends React.Component {
     )
   }
 }
-const mapStateToProps = (state) => {
-  return {num: state}
-}
 
-const actionCreators = {addCount, minuxCount, addCountAsync}
-
-App = connect(mapStateToProps, actionCreators)(App)
 export default App
