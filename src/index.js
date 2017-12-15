@@ -8,6 +8,9 @@ import {BrowserRouter, Route, Redirect, Switch} from 'react-router-dom'
 import './config'
 import reducers from './reducer'
 
+import Login from './container/login/login'
+import Register from './container/register/register'
+
 const reduxDevtools = window.devToolsExtension ? window.devToolsExtension() : () => {}
 
 const store = createStore(reducers, compose(
@@ -19,6 +22,10 @@ const store = createStore(reducers, compose(
 ReactDom.render(
   (<Provider store={store}>
       <BrowserRouter>
+        <div>
+          <Route path='/login' component={Login} />
+          <Route path='/register' component={Register} />
+        </div>
       </BrowserRouter>
   </Provider>),
   document.getElementById('root')
