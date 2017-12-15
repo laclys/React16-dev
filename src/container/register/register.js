@@ -7,9 +7,23 @@ class Register extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      user: '',
+      psd: '',
+      repeatpsd: '',
       type: 'genuis'
     }
   }
+
+  handleChange (key, val) {
+    this.setState({
+      [key]: val
+    })
+  }
+
+  handleRegister () {
+    console.log(this.state)
+  }
+
   render () {
     const RadioItem = Radio.RadioItem
     return (
@@ -17,16 +31,39 @@ class Register extends React.Component {
         <Logo></Logo>
         <h2>注册页</h2>
         <List>
-          <InputItem>用户名</InputItem>
+          <InputItem
+            onChange={(v) => {
+              this.handleChange('user', v)
+            }}
+          >用户名</InputItem>
           <WhiteSpace></WhiteSpace>
-          <InputItem>密码</InputItem>
+          <InputItem
+            type='password'
+            onChange={(v) => {
+              this.handleChange('psd', v)
+            }}
+          >密码</InputItem>
           <WhiteSpace></WhiteSpace>
-          <InputItem>确认密码</InputItem>
+          <InputItem
+            type='password'
+            onChange={(v) => {
+              this.handleChange('repeatpsd', v)
+            }}
+          >确认密码</InputItem>
           <WhiteSpace></WhiteSpace>
-          <RadioItem checked = {this.state.type == 'genuis'}>牛人</RadioItem>
-          <RadioItem checked = {this.state.type == 'consignor'}>委托人</RadioItem>
+          <RadioItem
+            checked = {this.state.type == 'genuis'}
+            onChange={() => this.handleChange('type', 'genuis')}
+          >牛人</RadioItem>
+          <RadioItem
+            checked = {this.state.type == 'consignor'}
+            onChange={() => this.handleChange('type', 'consignor')}
+          >委托人</RadioItem>
           <WhiteSpace></WhiteSpace>
-          <Button type='primary'>注册-></Button>
+          <Button
+            type='primary'
+            onClick={() =>this.handleRegister()}
+          >注册-></Button>
         </List>
       </div>
     )
