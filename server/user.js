@@ -9,6 +9,7 @@ const _filter = {
   '__v': 0
 }
 
+// 用户列表页
 Router.get('/list',function (req, res) {
   // User.remove({},function (e, d) {})
   User.find({}, function (err, doc) {
@@ -16,6 +17,7 @@ Router.get('/list',function (req, res) {
   })
 })
 
+// 登录
 Router.post('/login', function (req, res) {
   const {user, psd} =req.body
   User.findOne({user, psd: md5Pwd(psd)}, _filter, function (err, doc) {
@@ -33,13 +35,13 @@ Router.post('/login', function (req, res) {
   })
 })
 
+// 注册
 Router.post('/register', function (req, res) {
   const {user, psd, type} =req.body
   User.findOne({user}, function (err, doc) {
     if (doc) {
       return res.json({code: 1,msg: '用户名重复'})
     }
-
     const userModel = new User({user, psd: md5Pwd(psd), type})
     userModel.save(function (e, d) {
       if (e) {
@@ -55,6 +57,7 @@ Router.post('/register', function (req, res) {
   })
 })
 
+// 用户有没有登录信息
 Router.get('/info', function (req, res) {
   const {userid} = req.cookies
   // 用户有没有cookie
