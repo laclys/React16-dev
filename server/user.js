@@ -14,7 +14,7 @@ Router.get('/list',function (req, res) {
 
 Router.post('/login', function (req, res) {
   const {user, psd} =req.body
-  User.findOne({user, psd: md5Pwd(psd)}, function (err, doc) {
+  User.findOne({user, psd: md5Pwd(psd)}, {'psd': 0}, function (err, doc) {
     if (!doc) {
       return res.json({
         code: 1,
