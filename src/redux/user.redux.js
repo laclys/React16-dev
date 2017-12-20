@@ -30,7 +30,8 @@ export function user (state = initState, action) {
   return state
 }
 
-function authSuccess(data) {
+function authSuccess(obj) {
+  const {psd, ...data} = obj // 过滤掉psd
   return {type: AUTH_SUCCESS, payload: data}
 }
 
