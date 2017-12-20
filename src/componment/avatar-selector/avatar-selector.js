@@ -1,7 +1,12 @@
 import React from 'react'
 import {Grid, List} from 'antd-mobile'
+import PropTypes from 'prop-types'
 
 class AvatarSelector extends React.Component {
+
+  static PropTypes = {
+    selectAvatar: PropTypes.func
+  }
 
   constructor (props) {
     super(props)
