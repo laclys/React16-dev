@@ -1,6 +1,13 @@
 import React from 'react'
 import {NavBar, InputItem, TextareaItem, Button} from 'antd-mobile'
 import AvatarSelector from '../../componment/avatar-selector/avatar-selector'
+import {connect} from 'react-redux'
+import {update} from '../../redux/user.redux'
+
+@connect(
+  state => state.user,
+  {update}
+)
 class ConsignorInfo extends React.Component {
 
   constructor (props) {
@@ -43,7 +50,10 @@ class ConsignorInfo extends React.Component {
           title='任务要求'
         >
         </TextareaItem>
-        <Button type='primary'>SAVE</Button>
+        <Button
+          onClick={() => this.props.update(this.state)}
+          type='primary'
+        >SAVE</Button>
       </div>
     )
   }
