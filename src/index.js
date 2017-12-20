@@ -6,6 +6,7 @@ import {Provider} from 'react-redux'
 import {BrowserRouter, Route, Redirect, Switch} from 'react-router-dom'
 import AuthRoute from './componment/authroute/authroute'
 import ConsignorInfo from './container/consignorinfo/consignorinfo'
+import GeniusInfo from './container/geniusinfo/geniusinfo'
 import Login from './container/login/login'
 import Register from './container/register/register'
 
@@ -28,6 +29,7 @@ ReactDom.render(
           <AuthRoute></AuthRoute>
           <Switch>
             <Route path='/consignorinfo' component={ConsignorInfo} />
+            <Route path='/geniusinfo' component={GeniusInfo} />
             <Route path='/login' component={Login} />
             <Route path='/register' component={Register} />
           </Switch>
