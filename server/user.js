@@ -57,6 +57,21 @@ Router.post('/register', function (req, res) {
   })
 })
 
+Router.post('/update', function (req, res) {
+  const {userid} = req.cookies
+  if (!userid) {
+    return json.dumps({code: 1})
+  }
+  const body = req.body
+  User.findByIdAndUpdate(userid, body, function(err, doc){
+    const data = Object.assign({},{
+      user: doc.user,
+      type: doc.type
+    }, body)
+    return res.json({code: 0, data})
+  })
+})
+
 // 用户有没有登录信息
 Router.get('/info', function (req, res) {
   const {userid} = req.cookies
@@ -83,6 +98,9 @@ Router.get('/info', function (req, res) {
   })
 })
 
+/**
+ * 密码进行md5加密
+ */
 function md5Pwd(psd) {
   const salt = 'lac_is_god421084802~~'
   return utils.md5(utils.md5(psd + salt))
