@@ -7,6 +7,7 @@ import {BrowserRouter, Route, Redirect, Switch} from 'react-router-dom'
 import AuthRoute from './componment/authroute/authroute'
 import ConsignorInfo from './container/consignorinfo/consignorinfo'
 import GeniusInfo from './container/geniusinfo/geniusinfo'
+import Dashboard from './componment/dashboard/dashboard'
 import Login from './container/login/login'
 import Register from './container/register/register'
 
@@ -32,6 +33,8 @@ ReactDom.render(
             <Route path='/geniusinfo' component={GeniusInfo} />
             <Route path='/login' component={Login} />
             <Route path='/register' component={Register} />
+            {/* 如果没有命中路由就跳转Dashboard */}
+            <Route component={Dashboard} />
           </Switch>
         </div>
       </BrowserRouter>
