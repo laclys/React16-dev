@@ -11,8 +11,9 @@ const _filter = {
 
 // 用户列表页
 Router.get('/list',function (req, res) {
+  const {type} = req.query
   // User.remove({},function (e, d) {})
-  User.find({}, function (err, doc) {
+  User.find({type}, function (err, doc) {
     return res.json(doc)
   })
 })
