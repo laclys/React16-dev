@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {NavBar} from 'antd-mobile'
+import {Switch, Route} from 'react-router-dom'
 import NavLinkBar from '../navlink/navlink'
 
 function Consignor() {
@@ -13,7 +14,7 @@ function Msg() {
   return <h2>Msg</h2>
 }
 function User() {
-  return <h2>Msg</h2>
+  return <h2>Me</h2>
 }
 
 
@@ -61,8 +62,16 @@ class Dashboard extends React.Component {
     ]
     return (
       <div>
-        <NavBar mode="dard" >{navList.find(v => v.path === pathname).title}</NavBar>
-        <h2>Dashboard</h2>
+        <NavBar className='fixed-header' mode="dard" >{navList.find(v => v.path === pathname).title}</NavBar>
+        <div style={{marginTop: 45}}>
+          <Switch>
+            {navList.map(v => {
+              return (
+                <Route key={v.path} path={v.path} component={v.component}></Route>
+              )
+            })}
+          </Switch>
+        </div>
         <NavLinkBar data={navList} ></NavLinkBar>
       </div>
 
