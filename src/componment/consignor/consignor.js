@@ -1,7 +1,14 @@
 import React from 'react'
 import axios from 'axios'
 import {Card, WhiteSpace, WingBlank} from 'antd-mobile'
+import {connect} from 'react-redux'
+import {getUserList} from '../../redux/chatuser.redux'
 
+
+@connect(
+  state=>state.chatuser,
+  {getUserList}
+)
 class Consignor extends React.Component{
 
   constructor(props) {
@@ -12,21 +19,14 @@ class Consignor extends React.Component{
   }
 
   componentDidMount () {
-    axios.get('/user/list?type=genius')
-      .then(res => {
-        if (res.data.code == 0) {
-          this.setState({
-            data: res.data.data
-          })
-        }
-      })
+    this.props.getUserList('genius')
   }
   render () {
     console.log(this.state)
     return (
       <WingBlank>
         <WhiteSpace></WhiteSpace>
-        {this.state.data.map(v => {
+        {this.props.userlist.map(v => {
           return (
             v.avatar
               ? <Card key={v._id}>
