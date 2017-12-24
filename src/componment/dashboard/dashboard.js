@@ -3,10 +3,8 @@ import {connect} from 'react-redux'
 import {NavBar} from 'antd-mobile'
 import {Switch, Route} from 'react-router-dom'
 import NavLinkBar from '../navlink/navlink'
+import Consignor from '../consignor/consignor'
 
-function Consignor() {
-  return <h2>Co</h2>
-}
 function Genius() {
   return <h2>Go</h2>
 }
