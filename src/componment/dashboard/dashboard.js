@@ -5,16 +5,12 @@ import {Switch, Route} from 'react-router-dom'
 import NavLinkBar from '../navlink/navlink'
 import Consignor from '../consignor/consignor'
 import Genius from '../genius/genius'
-
+import User from '../../componment/user/user'
 
 
 function Msg() {
   return <h2>Msg</h2>
 }
-function User() {
-  return <h2>Me</h2>
-}
-
 
 @connect(
   state=>state

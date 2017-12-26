@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {Card, WhiteSpace, WingBlank} from 'antd-mobile'
 
 class UserCard extends React.Component {
-  static PropTypes = {
+  static propTypes = {
     userlist: PropTypes.array.isRequired
   }
   render () {
@@ -16,7 +16,6 @@ class UserCard extends React.Component {
               ? <Card key={v._id}>
                 <Card.Header
                   title={v.user}
-                  // thumb={require(`../img/${v.avatar.slice(2)}.jpg`)}
                   thumb={<img style={{width: 50}} src={require(`../img/${v.avatar.slice(2)}.jpg`)} alt=''/>}
                   extra={<span>{v.title}</span>}
                 >
