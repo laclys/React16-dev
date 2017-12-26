@@ -4,10 +4,10 @@ import {NavBar} from 'antd-mobile'
 import {Switch, Route} from 'react-router-dom'
 import NavLinkBar from '../navlink/navlink'
 import Consignor from '../consignor/consignor'
+import Genius from '../genius/genius'
 
-function Genius() {
-  return <h2>Go</h2>
-}
+
+
 function Msg() {
   return <h2>Msg</h2>
 }
