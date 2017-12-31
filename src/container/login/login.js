@@ -38,7 +38,7 @@ class Login extends React.Component {
   render () {
     return (
       <div>
-        {this.props.redirectTo ? <Redirect to={this.props.redirectTo}/> : null}
+        {(this.props.redirectTo && this.props.redirectTo !== '/login') ? <Redirect to={this.props.redirectTo}/> : null}
         <Logo></Logo>
         <WingBlank>
           <List>
