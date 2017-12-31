@@ -1,11 +1,24 @@
- import React from 'react'
+import React from 'react'
 import {connect} from 'react-redux'
 import {Result, List, WhiteSpace} from 'antd-mobile'
+import browserCookie from 'browser-cookies'
 
 @connect(
   state => state.user
 )
  class User extends React.Component {
+
+  constructor(props) {
+    super(props)
+    this.logout = this.logout.bind(this)
+  }
+  
+  logout() {
+    browserCookie.erase('userid')  // 清除cookie
+    // console.log('logout')
+    window.location.href = window.location.href // 强制刷新页面
+  }
+
    render () {
      const props = this.props
      const Item = List.Item
@@ -28,7 +41,7 @@ import {Result, List, WhiteSpace} from 'antd-mobile'
         </List>
         <WhiteSpace></WhiteSpace>
         <List>
-          <Item>注销</Item>
+          <Item style={{zIndex:1}} onClick={this.logout}>注销</Item>
         </List>
        </div>
      ) : null
