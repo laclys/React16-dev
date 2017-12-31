@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {Result, List, WhiteSpace} from 'antd-mobile'
+import {Result, List, WhiteSpace, Modal} from 'antd-mobile'
 import browserCookie from 'browser-cookies'
 
 @connect(
@@ -14,9 +14,14 @@ import browserCookie from 'browser-cookies'
   }
   
   logout() {
-    browserCookie.erase('userid')  // 清除cookie
-    // console.log('logout')
-    window.location.href = window.location.href // 强制刷新页面
+    const alert = Modal.alert
+    alert('注销', '确认注销吗???', [
+      { text: '取消', onPress: () => console.log('cancel') },
+      { text: '确认', onPress: () => {
+        browserCookie.erase('userid')  // 清除cookie
+        window.location.href = window.location.href // 强制刷新页面
+      }},
+    ])
   }
 
    render () {
