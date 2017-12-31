@@ -5,32 +5,25 @@ import {List, InputItem, WingBlank, WhiteSpace,Button, Radio} from 'antd-mobile'
 import {connect} from 'react-redux'
 import {register}  from '../../redux/user.redux'
 import { Redirect } from 'react-router-dom';
-
+import hocForm from '../../componment/hoc-form/hoc-form'
 
 @connect(
   state => state.user,
   {register}
 )
+@hocForm
 class Register extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      user: '',
-      psd: '',
-      repeatpsd: '',
-      type: 'genius'
-    }
   }
 
-  handleChange (key, val) {
-    this.setState({
-      [key]: val
-    })
+  componentDidMount () {
+    this.props.handleChange('type', 'genius')
   }
 
   handleRegister () {
-    this.props.register(this.state)
-    console.log(this.state)
+    this.props.register(this.props.state)
+    console.log(this.props.state)
   }
 
   render () {
@@ -44,31 +37,31 @@ class Register extends React.Component {
           {this.props.msg ? <p className='error-msg' >{this.props.msg}</p> : null}
           <InputItem
             onChange={(v) => {
-              this.handleChange('user', v)
+              this.props.handleChange('user', v)
             }}
           >用户名</InputItem>
           <WhiteSpace></WhiteSpace>
           <InputItem
             type='password'
             onChange={(v) => {
-              this.handleChange('psd', v)
+              this.props.handleChange('psd', v)
             }}
           >密码</InputItem>
           <WhiteSpace></WhiteSpace>
           <InputItem
             type='password'
             onChange={(v) => {
-              this.handleChange('repeatpsd', v)
+              this.props.handleChange('repeatpsd', v)
             }}
           >确认密码</InputItem>
           <WhiteSpace></WhiteSpace>
           <RadioItem
-            checked = {this.state.type == 'genius'}
-            onChange={() => this.handleChange('type', 'genius')}
+            checked = {this.props.state.type == 'genius'}
+            onChange={() => this.props.handleChange('type', 'genius')}
           >牛人</RadioItem>
           <RadioItem
-            checked = {this.state.type == 'consignor'}
-            onChange={() => this.handleChange('type', 'consignor')}
+            checked = {this.props.state.type == 'consignor'}
+            onChange={() => this.props.handleChange('type', 'consignor')}
           >委托人</RadioItem>
           <WhiteSpace></WhiteSpace>
           <Button

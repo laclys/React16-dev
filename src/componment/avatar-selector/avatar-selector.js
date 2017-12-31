@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 class AvatarSelector extends React.Component {
 
-  static PropTypes = {
+  static propTypes = {
     selectAvatar: PropTypes.func
   }
 
@@ -23,7 +23,11 @@ class AvatarSelector extends React.Component {
                         }))
     const gridHeader = this.state.icon
                         ? (
-                          <div>
+                          <div
+                            style={{
+                              marginTop: 50
+                            }}
+                          >
                             <span>已选择图片</span>
                             <img style={{width: 20}} src={this.state.icon} alt={this.state.text}/>
                           </div>
