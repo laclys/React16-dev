@@ -10,6 +10,7 @@ import GeniusInfo from './container/geniusinfo/geniusinfo'
 import Dashboard from './componment/dashboard/dashboard'
 import Login from './container/login/login'
 import Register from './container/register/register'
+import Chat from './componment/chat/chat'
 
 import './config'
 import './index.css'
@@ -33,6 +34,7 @@ ReactDom.render(
             <Route path='/geniusinfo' component={GeniusInfo} />
             <Route path='/login' component={Login} />
             <Route path='/register' component={Register} />
+            <Route path='/chat/:user' component={Chat} />
             {/* 如果没有命中路由就跳转Dashboard */}
             <Route component={Dashboard} />
           </Switch>
