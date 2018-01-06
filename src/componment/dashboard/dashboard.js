@@ -19,8 +19,11 @@ function Msg() {
 class Dashboard extends React.Component {
 
   componentDidMount () {
-    this.props.getMsgList()
-    this.props.recvMsg()
+    // 切换dashboard时不需要重新获取数据
+    if (!this.props.chat.chatmsg.length) {
+      this.props.getMsgList()
+      this.props.recvMsg()
+    }
   }
 
   render () {
