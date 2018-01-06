@@ -1,5 +1,5 @@
 import React from 'react'
-import {List, InputItem, NavBar, Icon} from 'antd-mobile'
+import {List, InputItem, NavBar, Icon, Grid} from 'antd-mobile'
 import {connect} from 'react-redux'
 import {getMsgList, sendMsg, recvMsg} from '../../redux/chat.redux'
 import io from 'socket.io-client'
@@ -16,7 +16,8 @@ class Chat extends React.Component{
     super(props)
     this.state= {
       text: '',
-      msg: []
+      msg: [],
+      showEmoji: false
     }
   }
 
@@ -25,6 +26,16 @@ class Chat extends React.Component{
       this.props.getMsgList()
       this.props.recvMsg()
     }
+    this.fixCarousel()
+  }
+
+  /**
+   * 修复ant-design中Carouse bug
+   */
+  fixCarousel () {
+    setTimeout(function() {
+      window.dispatchEvent(new Event('resize'))
+    }, 0)
   }
 
   handleSubmit () {
@@ -42,6 +53,12 @@ class Chat extends React.Component{
   }
 
   render () {
+    const emoji = '😀 😁 😂  🍇 🍉 🙈 🙉 💪 👈 🤘 🖐 ✊ 👊 🤛 👏 😎 ❤ 🗾  🏣 ⛪ ⛺ 🌁 🚕 🚀 💺 👲 🚣 🐲 🇨🇳 🌠  ☪ 🎃 🌲 ❄ 🎿 🎥  🎬 🍨 🍭'
+                    .split(' ')
+                    .filter(v => v)
+                    .map(v => ({
+                      text: v
+                    }))
     const userid = this.props.match.params.user
     const Item = List.Item
     const users = this.props.chat.users
@@ -49,7 +66,7 @@ class Chat extends React.Component{
       return null
     }
     const chatid = getChatId(userid, this.props.user._id)
-    console.log(chatid)
+    // console.log(chatid)
     const chatmsg = this.props.chat.chatmsg.filter(v => v.chatid == chatid)
     return (
       <div id='chat-page'>
@@ -90,9 +107,37 @@ class Chat extends React.Component{
               onChange={v => {
                 this.setState({text: v})
               }}
-              extra={<span onClick={() => this.handleSubmit()} >发送</span>}
+              extra={
+                <div>
+                  <span
+                    style={{
+                      marginRight: 15
+                    }}
+                    onClick={() => {
+                      this.setState({
+                        showEmoji: !this.state.showEmoji
+                      })
+                      this.fixCarousel()
+                    }}
+                  >😎</span>
+                  <span onClick={() => this.handleSubmit()} >发送</span>
+                </div>
+              }
             ></InputItem>
           </List>
+          {this.state.showEmoji ? (
+            <Grid
+              columnNum={9}
+              carouselMaxRow={4}
+              isCarousel={true}
+              data={emoji}
+              onClick={el => {
+                this.setState({
+                  text: this.state.text+el.text
+                })
+              }}
+            />
+          ) : null}
         </div>
       </div>
     )
