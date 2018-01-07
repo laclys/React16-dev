@@ -7,10 +7,7 @@ import Consignor from '../consignor/consignor'
 import Genius from '../genius/genius'
 import User from '../../componment/user/user'
 import {getMsgList, recvMsg} from '../../redux/chat.redux'
-
-function Msg() {
-  return <h2>Msg</h2>
-}
+import Msg from '../../componment/msg/msg'
 
 @connect(
   state=>state,
