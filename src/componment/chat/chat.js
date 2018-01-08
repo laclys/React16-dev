@@ -1,14 +1,14 @@
 import React from 'react'
 import {List, InputItem, NavBar, Icon, Grid} from 'antd-mobile'
 import {connect} from 'react-redux'
-import {getMsgList, sendMsg, recvMsg} from '../../redux/chat.redux'
+import {getMsgList, sendMsg, recvMsg, readMsg} from '../../redux/chat.redux'
 import io from 'socket.io-client'
 import { getChatId } from '../../utils'
 const socket = io('ws://localhost:9098')
 
 @connect(
   state=>state,
-  {getMsgList, sendMsg, recvMsg}
+  {getMsgList, sendMsg, recvMsg, readMsg}
 )
 class Chat extends React.Component{
 
@@ -27,6 +27,13 @@ class Chat extends React.Component{
       this.props.recvMsg()
     }
     this.fixCarousel()
+  }
+
+  componentWillUnmount () {
+    // 当离开当前页面时 进行已读处理
+    // console.log('unmount')
+    const to = this.props.match.params.user
+    this.props.readMsg(to)
   }
 
   /**
