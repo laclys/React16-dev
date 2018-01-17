@@ -23,3 +23,9 @@ nodemon server.js
 npm start
 
 ```
+
+Features：
+
+React SSR
+
+Eslint
