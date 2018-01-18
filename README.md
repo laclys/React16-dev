@@ -4,7 +4,7 @@ React16 + Redux + React-Router4 + MongoDB + Express Project
 
 ```bash
 # git clone
-git clone https://github.com/laclys/React6-dev.git
+git clone https://github.com/laclys/React16-dev.git
 
 # install dependencies
 npm install
@@ -28,4 +28,4 @@ Features：
 
 React SSR
 
-Eslint
+Eslint √
