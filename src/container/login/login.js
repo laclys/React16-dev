@@ -14,10 +14,6 @@ import hocForm from '../../componment/hoc-form/hoc-form'
 @hocForm
 class Login extends React.Component {
 
-  constructor(props) {
-    super(props)
-  }
-
   handleLogin () {
     this.props.login(this.props.state)
   }

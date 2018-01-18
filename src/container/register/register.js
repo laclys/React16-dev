@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Logo from '../../componment/logo/logo'
-import {List, InputItem, WingBlank, WhiteSpace,Button, Radio} from 'antd-mobile'
+import {List, InputItem, WhiteSpace,Button, Radio} from 'antd-mobile'
 import {connect} from 'react-redux'
 import {register}  from '../../redux/user.redux'
 import { Redirect } from 'react-router-dom';
@@ -13,9 +13,6 @@ import hocForm from '../../componment/hoc-form/hoc-form'
 )
 @hocForm
 class Register extends React.Component {
-  constructor(props) {
-    super(props)
-  }
 
   componentDidMount () {
     this.props.handleChange('type', 'genius')
