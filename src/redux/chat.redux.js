@@ -61,15 +61,12 @@ export function recvMsg () {
 }
 
 export function getMsgList () {
-  return (dispatch, getState) => {
-    axios.get('/user/getmsglist')
-      .then(res => {
-        console.log(res)
-        if (res.status === 200 && res.data.code === 0) {
-          const userid = getState().user._id // 获取当前登录的用户id
-          dispatch(msgList(res.data.msgs, res.data.users, userid))
-        }
-      })
+  return async (dispatch, getState) => {
+    const res = await axios.get('/user/getmsglist')
+    if (res.status === 200 && res.data.code === 0) {
+      const userid = getState().user._id // 获取当前登录的用户id
+      dispatch(msgList(res.data.msgs, res.data.users, userid))
+    }
   }
 }
 
@@ -78,13 +75,14 @@ function msgRead({from, userid, num}) {
 }
 
 export function readMsg(from) {
-  return (dispatch, getState) => {
-    axios.post('/user/readmsg', {from})
-      .then(res => {
-        const userid = getState().user._id
-        if (res.status == 200 && res.data.code == 0) {
-          dispatch(msgRead({userid, from, num: res.data.num}))
-        }
-      })
+  return async (dispatch, getState) => {
+    const res = await axios.post('/user/readmsg', {from})
+    const userid = getState().user._id
+    if (res.status == 200 && res.data.code == 0) {
+      dispatch(msgRead({userid, from, num: res.data.num}))
+    }
+
+
+
   }
 }
