@@ -18,7 +18,7 @@ import reducers from './reducer'
 
 // const reduxDevtools = window.devToolsExtension ? window.devToolsExtension() : () => {}
 
-const store = createStore(reducers,compose(applyMiddleware(thunk), window.devToolsExtension?window.devToolsExtension():f=>f));
+const store = createStore(reducers,compose(applyMiddleware(thunk), window.devToolsExtension?window.devToolsExtension():f=>f))
 
 // exact表示完全匹配 路由渲染对应的模板
 ReactDom.render(

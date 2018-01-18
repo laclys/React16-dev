@@ -4,7 +4,7 @@ import Logo from '../../componment/logo/logo'
 import {List, InputItem, WhiteSpace,Button, Radio} from 'antd-mobile'
 import {connect} from 'react-redux'
 import {register}  from '../../redux/user.redux'
-import { Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom'
 import hocForm from '../../componment/hoc-form/hoc-form'
 
 @connect(

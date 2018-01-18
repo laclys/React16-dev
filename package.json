@@ -116,7 +116,8 @@
     "extends": "react-app",
     "rules": {
       "eqeqeq": ["off"],
-      "jsx-a11y/accessible-emoji": [0]
+      "jsx-a11y/accessible-emoji": [0],
+      "semi": ["warn", "never"]
     }
   },
   "devDependencies": {
