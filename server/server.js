@@ -1,17 +1,29 @@
-const express = require('express')
-const bodyParser = require('body-parser')
-const cookieParser = require('cookie-parser')
+// const express = require('express')
+// const bodyParser = require('body-parser')
+// const cookieParser = require('cookie-parser')
+// const path = require('path')
+// const model = require('./model')
+
+import express from 'express'
+import bodyParser from 'body-parser'
+import cookieParser from 'cookie-parser'
+import path from 'path'
+import model from './model'
+
+import React from 'react'
+
 const app = express()
-const model = require('./model')
 const User = model.getModel('user')
 const Chat = model.getModel('chat')
-
-const path = require('path')
 
 // work with express
 const server = require('http').Server(app)
 const io = require('socket.io')(server)
 
+// function App() {
+//   return <h2>123</h2>
+// }
+// console.log((App()))
 io.on('connection', function(socket) {
   // console.log('user login')
   socket.on('sendmsg', function(data) {  // socket的当前连接的请求，io是全局的
