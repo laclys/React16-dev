@@ -8,7 +8,6 @@ import Genius from '../genius/genius'
 import User from '../../componment/user/user'
 import {getMsgList, recvMsg} from '../../redux/chat.redux'
 import Msg from '../../componment/msg/msg'
-import QueueAnim from 'rc-queue-anim'
 
 @connect(
   state=>state,
