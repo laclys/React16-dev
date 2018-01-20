@@ -15,12 +15,11 @@ mongod --config /usr/local/etc/mongod.conf
 # start Mongo
 mongo
 
-# run server
-cd server
-nodemon server.js
+# build project
+npm run build
 
-# serve with hot reload at localhost:3000
-npm start
+# run project localhost:9098
+npm run server
 
 ```
 
