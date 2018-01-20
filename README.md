@@ -30,4 +30,4 @@ React SSR
 
 Eslint √
 
-ANIMATION
+ANIMATION √

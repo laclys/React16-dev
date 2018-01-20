@@ -6,6 +6,8 @@ const model = require('./model')
 const User = model.getModel('user')
 const Chat = model.getModel('chat')
 
+const path = require('path')
+
 // work with express
 const server = require('http').Server(app)
 const io = require('socket.io')(server)
@@ -30,6 +32,18 @@ const userRouter = require('./user')
 app.use(cookieParser())
 app.use(bodyParser.json())
 app.use('/user', userRouter)
+
+/**
+ *  使用express后台9098端口 express模拟服务器拦截请求 运行build下代码
+   app.use(function(req, res, next) {
+     if (req.url.startsWith('/user') || req.url.startsWith('/static/')) {
+       return next()
+     }
+     return res.sendFile(path.resolve('build/index.html'))
+   })
+   app.use('/', express.static(path.resolve('build')))
+ * 
+ */
 
 server.listen(9098, function () {
   console.log('Node app start at 9098')
