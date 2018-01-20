@@ -40,6 +40,7 @@
     "promise": "8.0.1",
     "prop-types": "^15.6.0",
     "raf": "3.4.0",
+    "rc-queue-anim": "^1.4.1",
     "react": "^16.2.0",
     "react-dev-utils": "^4.2.1",
     "react-dom": "^16.2.0",
@@ -115,9 +116,16 @@
   "eslintConfig": {
     "extends": "react-app",
     "rules": {
-      "eqeqeq": ["off"],
-      "jsx-a11y/accessible-emoji": [0],
-      "semi": ["warn", "never"]
+      "eqeqeq": [
+        "off"
+      ],
+      "jsx-a11y/accessible-emoji": [
+        0
+      ],
+      "semi": [
+        "warn",
+        "never"
+      ]
     }
   },
   "devDependencies": {
