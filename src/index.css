@@ -35,7 +35,10 @@
 }
 .stick-footer{
 	z-index:10;
-	position: absolute;
+	position: fixed;
 	bottom: 0;
 	width:100%;
+}
+#chat-page .am-navbar{
+  z-index: 10
 }
