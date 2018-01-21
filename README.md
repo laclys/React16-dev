@@ -1,4 +1,4 @@
-React16 + Redux + React-Router4 + MongoDB + Express Project
+React16 + Redux + React-Router4 + MongoDB + Express + Socket.io Project
 
 ### Build Setup
 
