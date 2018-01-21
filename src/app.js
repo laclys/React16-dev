@@ -9,8 +9,23 @@ import ConsignorInfo from './container/consignorinfo/consignorinfo'
 import GeniusInfo from './container/geniusinfo/geniusinfo'
 
 class App extends React.Component {
+
+  constructor(props) {
+    super(props)
+    this.state={
+      hasError: false
+    }
+  }
+
+  componentDidCatch(err, info) {
+    console.log(err, info)
+    this.setState({
+      hasError: true
+    })
+  }
+
   render () {
-    return (
+    return !this.state.hasError ? (
       <div>
         <AuthRoute></AuthRoute>
         <Switch>
@@ -23,7 +38,7 @@ class App extends React.Component {
           <Route component={Dashboard} />
         </Switch>
       </div>
-    )
+    ) : <div className="error-container" >页面出错了！</div>
   }
 }
 export default App

@@ -1,13 +1,14 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {NavBar} from 'antd-mobile'
-import {Switch, Route} from 'react-router-dom'
+import {Route} from 'react-router-dom'
 import NavLinkBar from '../navlink/navlink'
 import Consignor from '../consignor/consignor'
 import Genius from '../genius/genius'
 import User from '../../componment/user/user'
 import {getMsgList, recvMsg} from '../../redux/chat.redux'
 import Msg from '../../componment/msg/msg'
+import Redirect from 'react-router-dom/Redirect'
 
 @connect(
   state=>state,
@@ -60,22 +61,17 @@ class Dashboard extends React.Component {
         component: User
       }
     ]
-    return (
+    const page = navList.find(v=>v.path==pathname)
+    return page ? (
       <div>
-        <NavBar className='fixed-header' mode="dard" >{navList.find(v => v.path === pathname).title}</NavBar>
+        <NavBar className='fixed-header' mode="dard" >{page.title}</NavBar>
         <div style={{marginTop: 45}}>
-          <Switch>
-            {navList.map(v => {
-              return (
-                <Route key={v.path} path={v.path} component={v.component}></Route>
-              )
-            })}
-          </Switch>
+            <Route key={page.path} path={page.path} component={page.component}></Route>
         </div>
         <NavLinkBar data={navList} ></NavLinkBar>
       </div>
 
-    )
+    ): <Redirect to='/msg' />
   }
 }
 

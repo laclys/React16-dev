@@ -42,3 +42,15 @@
 #chat-page .am-navbar{
   z-index: 10
 }
+
+.error-container{
+position: absolute;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
+height: 20px;
+width: 100px;
+margin: auto;
+text-align: center;
+}
