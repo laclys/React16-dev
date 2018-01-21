@@ -25,7 +25,7 @@ npm run server
 
 Features：
 
-React SSR
+React SSR √
 
 Eslint √
 

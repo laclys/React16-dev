@@ -1,16 +1,24 @@
-// const express = require('express')
-// const bodyParser = require('body-parser')
-// const cookieParser = require('cookie-parser')
-// const path = require('path')
-// const model = require('./model')
-
 import express from 'express'
 import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
 import path from 'path'
 import model from './model'
+import csshook from 'css-modules-require-hook/preset'
+import assethook from 'asset-require-hook'
+
+assethook({
+  extensions: ['png', 'jpg']
+})
 
 import React from 'react'
+import {createStore, applyMiddleware, compose} from 'redux'
+import thunk from 'redux-thunk'
+import {Provider} from 'react-redux'
+import {StaticRouter} from 'react-router-dom'
+import App from '../src/app'
+import reducers from '../src/reducer'
+import {renderToString} from 'react-dom/server'
+import staticPath from '../build/asset-manifest.json'
 
 const app = express()
 const User = model.getModel('user')
@@ -19,11 +27,6 @@ const Chat = model.getModel('chat')
 // work with express
 const server = require('http').Server(app)
 const io = require('socket.io')(server)
-
-// function App() {
-//   return <h2>123</h2>
-// }
-// console.log((App()))
 io.on('connection', function(socket) {
   // console.log('user login')
   socket.on('sendmsg', function(data) {  // socket的当前连接的请求，io是全局的
@@ -49,7 +52,41 @@ app.use(function(req, res, next) {
   if (req.url.startsWith('/user') || req.url.startsWith('/static/')) {
     return next()
   }
-  return res.sendFile(path.resolve('build/index.html'))
+  const store = createStore(reducers,compose(applyMiddleware(thunk)))
+  const context = {}
+  const markup = renderToString(
+    (<Provider store={store}>
+      <StaticRouter
+        location={req.url}
+        context={context}
+      >
+        <App></App>
+      </StaticRouter>
+    </Provider>)
+    )
+
+  const pageHTML = `
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="theme-color" content="#000000">
+      <title>React App</title>
+      <link rel="stylesheet" href="/${staticPath['main.css']}">
+    </head>
+    <body>
+      <noscript>
+        You need to enable JavaScript to run this app.
+      </noscript>
+      <div id="root">${markup}</div>
+      <script src="/${staticPath['main.js']}" ></script>
+    </body>
+  </html>  
+  `
+
+  res.send(pageHTML)
+   // return res.sendFile(path.resolve('build/index.html'))
 })
 app.use('/', express.static(path.resolve('build')))
 
