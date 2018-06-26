@@ -30,3 +30,9 @@ React SSR √
 Eslint √
 
 ANIMATION √
+
+Redux -> 4.0
+
+Redux-thunk -> Redux-saga
+
+PWA
